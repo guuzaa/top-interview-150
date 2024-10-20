@@ -1,6 +1,8 @@
 #ifndef __ARRAY_H__
 #define __ARRAY_H__
 
+#include <random>
+#include <unordered_map>
 #include <vector>
 
 namespace array {
@@ -9,6 +11,11 @@ namespace array {
 /// @param m The number of elements in nums1.
 /// @param nums2 The second sorted array.
 /// @param n The number of elements in nums2.
+///
+/// constraints
+/// - 1 <= nums1.length, nums2.length <= 200
+/// - 0 <= m, n <= 200
+/// - 10^9 <= nums1[i], nums2[j] <= 10^9
 /// @note https://leetcode.com/problems/merge-sorted-array/
 void merge(std::vector<int> &nums1, int m, std::vector<int> &nums2, int n);
 
@@ -18,6 +25,11 @@ void merge(std::vector<int> &nums1, int m, std::vector<int> &nums2, int n);
 /// @param nums The integer array.
 /// @param val The integer to remove.
 /// @return the number of elements in `nums` that are not equal to `val`.
+///
+/// constraints
+/// - 0 <= nums.length <= 100
+/// - 0 <= nums[i] <= 50
+/// - 0 <= val <= 100
 /// @note https://leetcode.com/problems/remove-element/
 int removeElement(std::vector<int> &nums, int val);
 
@@ -69,8 +81,9 @@ int majorityElement(std::vector<int> &nums);
 void rotate(std::vector<int> &nums, int k);
 
 /// @brief You are given an array prices where prices[i] is the price of a given stock on the ith day.
-/// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
-/// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+/// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the
+/// future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve
+/// any profit, return 0.
 /// @param prices The integer array.
 /// @return The maximum profit.
 ///
@@ -81,8 +94,8 @@ void rotate(std::vector<int> &nums, int k);
 int maxProfit(std::vector<int> &prices);
 
 /// @brief You are given an array prices where prices[i] is the price of a given stock on the ith day.
-/// You can only hold at most one share of the stock at any time.
-/// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+/// On each day, you may decide to buy and/or sell the stock. You can only hold at most one share of the stock at any
+/// time. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 /// @param prices The integer array.
 /// @return The maximum profit.
 ///
@@ -91,6 +104,89 @@ int maxProfit(std::vector<int> &prices);
 /// - 0 <= prices[i] <= 10^4
 /// @note https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 int maxProfit2(std::vector<int> &prices);
+
+/// @brief You are given an integer array nums.
+/// You are initially positioned at the array's first index, and each element in the array represents your maximum jump
+/// length at that position.
+/// @param nums The integer array.
+/// @return true if you can reach the last index, or false otherwise.
+///
+/// constraints
+/// - 1 <= nums.length <= 10^4
+/// - 0 <= nums[i] <= 10^5
+/// @note https://leetcode.com/problems/jump-game/
+bool canJump(std::vector<int> &nums);
+
+/// @brief You are given an integer array nums.
+/// You are initially positioned at the array's first index, and each element in the array represents your maximum jump
+/// length at that position.
+/// @param nums The integer array.
+/// @return The minimum number of jumps to reach the last index.
+///
+/// constraints
+/// - 1 <= nums.length <= 10^4
+/// - 0 <= nums[i] <= 1000
+/// @note https://leetcode.com/problems/jump-game-ii/
+int jump(std::vector<int> &nums);
+
+/// @brief Given an array of integers citations where citations[i] is the number of citations a researcher received
+/// for their ith paper, return the researcher's h-index.
+/// @param citations The integer array.
+/// @return The researcher's h-index.
+///
+/// constraints
+/// - n == citations.length
+/// - 1 <= n <= 5000
+/// - 0 <= citations[i] <= 1000
+/// @note https://leetcode.com/problems/h-index/
+int hIndex(std::vector<int> &citations);
+
+/// @brief Design a data structure that supports insert, delete, and getRandom operations.
+///
+/// constraints
+/// - -2^31 <= val <= 2^31 - 1
+/// - At most 2 * 10^5 calls will be made to insert, delete, and getRandom.
+/// - There will be at least one element in the data structure when getRandom is called.
+/// @note https://leetcode.com/problems/insert-delete-getrandom-o1/
+class RandomizedSet {
+ public:
+  RandomizedSet();
+  bool insert(int val);
+  bool remove(int val);
+  int getRandom();
+
+ private:
+  std::unordered_map<int, int> map_;
+  std::vector<int> values_;
+  std::mt19937 gen_;
+  std::uniform_int_distribution<> dis_;
+};
+
+/// @brief Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the
+/// elements of nums except nums[i].
+/// @param nums The integer array.
+/// @return The integer array.
+///
+/// constraints
+/// - 2 <= nums.length <= 10^5
+/// - -30 <= nums[i] <= 30
+/// @note https://leetcode.com/problems/product-of-array-except-self/
+std::vector<int> productExceptSelf(std::vector<int> &nums);
+
+/// @brief There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
+/// You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from the ith station to its next
+/// (i + 1)th station. You begin the journey with an empty tank at one of the gas stations.
+/// @param gas the amount of gas at the ith station.
+/// @param cost the cost of gas to travel from the ith station to its next (i + 1)th station.
+/// @return The starting gas station's index if you can travel around the circuit once in the clockwise direction,
+/// otherwise return -1.
+///
+/// constraints
+/// - n == gas.length == cost.length
+/// - 1 <= n <= 10^5
+/// - 0 <= gas[i], cost[i] <= 10^4
+/// @note https://leetcode.com/problems/gas-station/
+int canCompleteCircuit(std::vector<int> &gas, std::vector<int> &cost);
 }  // namespace array
 
 #endif  //__ARRAY_H__
