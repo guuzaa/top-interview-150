@@ -229,4 +229,44 @@ int canCompleteCircuit(std::vector<int> &gas, std::vector<int> &cost) {
   return total_tank >= 0 ? starting_station : -1;
 }
 
+int candy(std::vector<int> &ratings) {
+  int len = static_cast<int>(ratings.size());
+  std::vector<int> candies(len, 1);
+  for (int i = 1; i < len; ++i) {
+    if (ratings[i] > ratings[i - 1]) {
+      candies[i] = candies[i - 1] + 1;
+    }
+  }
+
+  int num_candies = candies[len - 1];
+  for (int i = len - 2; i >= 0; --i) {
+    if (ratings[i] > ratings[i + 1]) {
+      candies[i] = std::max(candies[i], candies[i + 1] + 1);
+    }
+    num_candies += candies[i];
+  }
+  return num_candies;
+}
+
+int trap(std::vector<int> &height) {
+  int len = static_cast<int>(height.size());
+  std::vector<int> left_max(len);
+  std::vector<int> right_max(len);
+  left_max[0] = height[0];
+  for (int i = 1; i < len; ++i) {
+    left_max[i] = std::max(left_max[i - 1], height[i]);
+  }
+
+  right_max[len - 1] = height[len - 1];
+  for (int i = len - 2; i >= 0; --i) {
+    right_max[i] = std::max(right_max[i + 1], height[i]);
+  }
+
+  int water = 0;
+  for (int i = 0; i < len; ++i) {
+    water += std::min(left_max[i], right_max[i]) - height[i];
+  }
+  return water;
+}
+
 }  // namespace array

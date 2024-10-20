@@ -187,6 +187,39 @@ std::vector<int> productExceptSelf(std::vector<int> &nums);
 /// - 0 <= gas[i], cost[i] <= 10^4
 /// @note https://leetcode.com/problems/gas-station/
 int canCompleteCircuit(std::vector<int> &gas, std::vector<int> &cost);
+
+/// @brief There are n children standing in a line. Each child is assigned a rating value given in the integer array
+/// ratings. You are giving candies to these children subjected to the following requirements:
+///
+/// - Each child must have at least one candy.
+///
+/// - Children with a higher rating get more candies than their neighbors.
+/// @param ratings The integer array.
+/// @return The minimum number of candies you need to have to distribute to the children.
+///
+/// constraints
+///
+/// - n == ratings.length
+///
+/// - 1 <= n <= 2 * 10^4
+///
+/// - 0 <= ratings[i] <= 2 * 10^4
+/// @note https://leetcode.com/problems/candy/
+int candy(std::vector<int> &ratings);
+
+/// @brief Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how
+/// much water it can trap after raining.
+/// @param height The integer array.
+/// @return The amount of water it can trap after raining.
+///
+/// constraints
+/// - n == height.length
+///
+/// - 1 <= n <= 2 * 10^4
+///
+/// - 0 <= height[i] <= 10^5
+/// @note https://leetcode.com/problems/trapping-rain-water/
+int trap(std::vector<int> &height);
 }  // namespace array
 
 #endif  //__ARRAY_H__

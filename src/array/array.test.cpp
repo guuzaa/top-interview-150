@@ -335,3 +335,31 @@ TEST(ArrayTest, CanCompleteCircuitTest) {
     EXPECT_EQ(result, c.expected_index);
   }
 }
+
+TEST(ArrayTest, CandyTest) {
+  struct Case {
+    std::vector<int> ratings;
+    int expected_min_candies;
+  };
+  std::vector<Case> cases = {{{1, 0, 2}, 5}, {{1, 2, 2}, 4}, {{1, 3, 2, 2, 1}, 7}, {{1, 2, 3, 4, 5, 3, 2}, 18}};
+  for (auto &c : cases) {
+    int result = candy(c.ratings);
+    EXPECT_EQ(result, c.expected_min_candies);
+  }
+}
+
+TEST(ArrayTest, TrapTest) {
+  struct Case {
+    std::vector<int> height;
+    int expected_water;
+  };
+  std::vector<Case> cases = {{{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}, 6},
+                             {{4, 2, 0, 3, 2, 5}, 9},
+                             {{0, 0, 0, 0}, 0},
+                             {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 0},
+                             {{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 0}};
+  for (auto &c : cases) {
+    int result = trap(c.height);
+    EXPECT_EQ(result, c.expected_water);
+  }
+}
