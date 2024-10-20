@@ -1,4 +1,4 @@
-add_subdirectory(lib)
+add_subdirectory(array)
 
 # TODO support dynamic library
 add_library(${PROJECT_NAME} STATIC ${ALL_OBJECT_FILES})
