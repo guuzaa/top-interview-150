@@ -1,7 +1,7 @@
 # Descriptions for the project
 set(PROJ_NAME cmaker)
 set(VER 0.0.1)
-set(CPP_STD 17)
+set(CPP_STD 20)
 
 set(unit_test_pattern ".test.")
 set(supported_suffixes "cc" "cpp" "cxx" "c")
