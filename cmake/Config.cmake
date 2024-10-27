@@ -1,5 +1,5 @@
 # Descriptions for the project
-set(PROJ_NAME cmaker)
+set(PROJ_NAME top-interview-150)
 set(VER 0.0.1)
 set(CPP_STD 20)
 

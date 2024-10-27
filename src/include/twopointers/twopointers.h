@@ -1,5 +1,5 @@
-#ifndef TWOPOINTERS_H
-#define TWOPOINTERS_H
+#ifndef __TWOPOINTERS_H__
+#define __TWOPOINTERS_H__
 
 #include <string>
 #include <vector>
@@ -79,4 +79,4 @@ int maxArea(std::vector<int> &height);
 std::vector<std::vector<int>> threeSum(std::vector<int> &nums);
 }  // namespace twopointers
 
-#endif  // TWOPOINTERS_H
+#endif  // __TWOPOINTERS_H__
