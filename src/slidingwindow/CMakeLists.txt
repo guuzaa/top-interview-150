@@ -27,4 +27,5 @@ if(test_files)
         COMMENT "Running unit-test ..."
         COMMAND ${test_name}
     )
+    set(ALL_TESTS ${ALL_TESTS} $<TARGET_FILE:${test_name}> PARENT_SCOPE)
 endif(test_files)

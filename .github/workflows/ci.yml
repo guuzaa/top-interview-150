@@ -1,0 +1,32 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        chmod +x ./build_support/package.sh
+        ./build_support/package.sh
+
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+      
+    - name: Check Format
+      run: cmake --build build --target check-format
+
+    - name: Build
+      run: cmake --build build
+
+    - name: Test
+      run: cmake --build build -t unit-tests

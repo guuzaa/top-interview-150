@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/cpp:1-ubuntu-22.04
 
 # Optionally install the cmake for vcpkg
-COPY ./package.sh /tmp/
+COPY ../build_support/package.sh /tmp/
 
 RUN chmod +x /tmp/package.sh \
     && /tmp/package.sh \
