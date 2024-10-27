@@ -6,9 +6,9 @@
 #
 set -e
 
-apt-get -y update
+sudo apt-get -y update
 
-apt-get -y install \
+sudo apt-get -y install \
     build-essential \
     clang-12 \
     clang-format-12 \
