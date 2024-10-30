@@ -4,6 +4,7 @@ add_subdirectory(twopointers)
 add_subdirectory(slidingwindow)
 add_subdirectory(matrix)
 add_subdirectory(hashmap)
+add_subdirectory(intervals)
 
 # TODO support dynamic library
 add_library(${PROJECT_NAME} STATIC ${ALL_OBJECT_FILES})
@@ -22,6 +23,7 @@ add_custom_target(
     COMMAND $<TARGET_FILE:slidingwindow_unit_test>
     COMMAND $<TARGET_FILE:matrix_unit_test>
     COMMAND $<TARGET_FILE:hashmap_unit_test>
+    COMMAND $<TARGET_FILE:intervals_unit_test>
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${ALL_TESTS}
 )
