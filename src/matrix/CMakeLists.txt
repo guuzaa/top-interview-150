@@ -17,7 +17,6 @@ if(test_files)
     include_googletest()
     set(test_name "${dir}_unit_test")
     add_executable(${test_name} EXCLUDE_FROM_ALL ${test_files})
-    target_compile_options(${test_name} PRIVATE -g -O0)
     target_link_libraries(${test_name} PRIVATE ${lib_name} gtest gmock_main)
 
     set_target_properties(${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${UnitTestsBinaryPath}")
