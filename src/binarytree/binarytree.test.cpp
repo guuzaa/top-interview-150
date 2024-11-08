@@ -277,3 +277,71 @@ TEST(binarytreeTest, BSTIterator) {
   EXPECT_FALSE(iterator.hasNext());
   deleteTree(root);
 }
+
+TEST(binarytreeTest, rightSideView) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    std::vector<int> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{1, 2, 3, std::nullopt, 5, std::nullopt, 4}, {1, 3, 4}},
+      {{1, std::nullopt, 3}, {1, 3}},
+      {{}, {}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::rightSideView(root), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, averageOfLevels) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    std::vector<double> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{3, 9, 20, 15, 7}, {3, 14.5, 11.0}},
+      {{3, 9, 20, std::nullopt, std::nullopt, 15, 7}, {3, 14.5, 11.0}},
+      {{1}, {1.0}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::averageOfLevels(root), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, levelOrder) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    std::vector<std::vector<int>> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{3, 9, 20, 15, 7}, {{3}, {9, 20}, {15, 7}}},
+      {{1}, {{1}}},
+      {{}, {}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::levelOrder(root), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, zigzagLevelOrder) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    std::vector<std::vector<int>> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{3, 9, 20, 15, 7}, {{3}, {20, 9}, {15, 7}}},
+      {{1}, {{1}}},
+      {{}, {}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::zigzagLevelOrder(root), test_case.expected);
+    deleteTree(root);
+  }
+}

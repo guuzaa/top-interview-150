@@ -246,5 +246,60 @@ class BSTIterator {
 /// @note https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);
 
+/// @brief Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the
+/// nodes you can see ordered from top to bottom.
+/// @param root a binary tree
+/// @return the values of the nodes you can see ordered from top to bottom
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [0, 100].
+///
+/// - -100 <= Node.val <= 100
+///
+/// @note https://leetcode.com/problems/binary-tree-right-side-view/
+std::vector<int> rightSideView(TreeNode *root);
+
+/// @brief Given the root of a binary tree, return the average value of the nodes on each level.
+/// @param root a binary tree
+/// @return the average value of the nodes on each level
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [1, 10^4].
+///
+/// - 0 <= Node.val <= 10^5
+///
+/// @note https://leetcode.com/problems/average-of-levels-in-binary-tree/
+std::vector<double> averageOfLevels(TreeNode *root);
+
+/// @brief Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to
+/// right, level by level).
+/// @param root a binary tree
+/// @return the level order traversal of its nodes' values
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [0, 2000].
+///
+/// - -1000 <= Node.val <= 1000
+///
+/// @note https://leetcode.com/problems/binary-tree-level-order-traversal/
+std::vector<std::vector<int>> levelOrder(TreeNode *root);
+
+/// @brief Given the root of a binary tree, return the zigzag level order traversal of its nodes' values. (i.e., from
+/// left to right, then right to left for the next level and alternate between).
+/// @param root a binary tree
+/// @return the zigzag level order traversal of its nodes' values
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [0, 2000].
+///
+/// - -100 <= Node.val <= 100
+///
+/// @note https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+std::vector<std::vector<int>> zigzagLevelOrder(TreeNode *root);
+
 }  // namespace binarytree
 #endif  // __BINARYTREE_H__

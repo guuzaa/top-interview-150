@@ -229,4 +229,112 @@ TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
   return left != nullptr ? left : right;
 }
 
+std::vector<int> rightSideView(TreeNode *root) {
+  std::vector<int> result;
+  if (root == nullptr) {
+    return result;
+  }
+  std::queue<TreeNode *> queue;
+  queue.emplace(root);
+  while (!queue.empty()) {
+    int levelSize = static_cast<int>(queue.size());
+    for (int i = 0; i < levelSize; ++i) {
+      auto node = queue.front();
+      queue.pop();
+      if (node->left != nullptr) {
+        queue.emplace(node->left);
+      }
+      if (node->right != nullptr) {
+        queue.emplace(node->right);
+      }
+      if (i == levelSize - 1) {
+        result.emplace_back(node->val);
+      }
+    }
+  }
+  return result;
+}
+
+std::vector<double> averageOfLevels(TreeNode *root) {
+  std::vector<double> result;
+  std::queue<TreeNode *> queue;
+  queue.emplace(root);
+  while (!queue.empty()) {
+    int levelSize = static_cast<int>(queue.size());
+    double levelSum = 0;
+    for (int i = 0; i < levelSize; ++i) {
+      auto node = queue.front();
+      queue.pop();
+      levelSum += node->val;
+      if (node->left != nullptr) {
+        queue.emplace(node->left);
+      }
+      if (node->right != nullptr) {
+        queue.emplace(node->right);
+      }
+    }
+    result.emplace_back(levelSum / levelSize);
+  }
+  return result;
+}
+
+std::vector<std::vector<int>> levelOrder(TreeNode *root) {
+  std::vector<std::vector<int>> result;
+  if (root == nullptr) {
+    return result;
+  }
+  std::queue<TreeNode *> queue;
+  queue.emplace(root);
+  while (!queue.empty()) {
+    int levelSize = static_cast<int>(queue.size());
+    std::vector<int> level;
+    level.reserve(levelSize);
+    for (int i = 0; i < levelSize; ++i) {
+      auto node = queue.front();
+      queue.pop();
+      level.emplace_back(node->val);
+      if (node->left != nullptr) {
+        queue.emplace(node->left);
+      }
+      if (node->right != nullptr) {
+        queue.emplace(node->right);
+      }
+    }
+    result.emplace_back(std::move(level));
+  }
+  return result;
+}
+
+std::vector<std::vector<int>> zigzagLevelOrder(TreeNode *root) {
+  std::vector<std::vector<int>> result;
+  if (root == nullptr) {
+    return result;
+  }
+  std::queue<TreeNode *> queue;
+  queue.emplace(root);
+  bool reverse = false;
+  while (!queue.empty()) {
+    int levelSize = static_cast<int>(queue.size());
+    std::vector<int> level;
+    level.reserve(levelSize);
+    for (int i = 0; i < levelSize; ++i) {
+      auto node = queue.front();
+      queue.pop();
+      level.emplace_back(node->val);
+      if (node->left != nullptr) {
+        queue.emplace(node->left);
+      }
+      if (node->right != nullptr) {
+        queue.emplace(node->right);
+      }
+    }
+    if (reverse) {
+      std::reverse(level.begin(), level.end());
+    }
+    result.emplace_back(std::move(level));
+    reverse = !reverse;
+  }
+  return result;
+}
+
 }  // namespace binarytree
