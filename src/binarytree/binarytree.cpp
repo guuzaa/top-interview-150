@@ -1,6 +1,7 @@
 #include "binarytree/binarytree.h"
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <queue>
 
 namespace binarytree {
@@ -335,6 +336,90 @@ std::vector<std::vector<int>> zigzagLevelOrder(TreeNode *root) {
     reverse = !reverse;
   }
   return result;
+}
+
+std::vector<int> inorderTraversal(TreeNode *root) {
+  std::vector<int> result;
+  std::stack<TreeNode *> stack;
+  TreeNode *current = root;
+
+  while (current != nullptr || !stack.empty()) {
+    while (current != nullptr) {
+      stack.push(current);
+      current = current->left;
+    }
+    current = stack.top();
+    stack.pop();
+    result.emplace_back(current->val);
+    current = current->right;
+  }
+  return result;
+}
+
+int getMinimumDifference(TreeNode *root) {
+  int minDiff = std::numeric_limits<int>::max();
+  TreeNode *prev = nullptr;
+
+  std::function<void(TreeNode *)> inorder = [&](TreeNode *node) {
+    if (node == nullptr) {
+      return;
+    }
+
+    inorder(node->left);
+
+    if (prev) {
+      minDiff = std::min(minDiff, node->val - prev->val);
+    }
+    prev = node;
+
+    inorder(node->right);
+  };
+
+  inorder(root);
+  return minDiff;
+}
+
+int kthSmallest(TreeNode *root, int k) {
+  std::stack<TreeNode *> stack;
+  TreeNode *current = root;
+  int count = 0;
+
+  while (current != nullptr || !stack.empty()) {
+    while (current != nullptr) {
+      stack.push(current);
+      current = current->left;
+    }
+    current = stack.top();
+    stack.pop();
+    ++count;
+    if (count == k) {
+      return current->val;
+    }
+    current = current->right;
+  }
+  return -1;
+}
+
+bool isValidBST(TreeNode *root) {
+  std::stack<TreeNode *> stack;
+  TreeNode *prev = nullptr;
+  TreeNode *current = root;
+
+  while (current != nullptr || !stack.empty()) {
+    while (current != nullptr) {
+      stack.push(current);
+      current = current->left;
+    }
+
+    current = stack.top();
+    stack.pop();
+    if (prev && current->val <= prev->val) {
+      return false;
+    }
+    prev = current;
+    current = current->right;
+  }
+  return true;
 }
 
 }  // namespace binarytree

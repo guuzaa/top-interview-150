@@ -301,5 +301,60 @@ std::vector<std::vector<int>> levelOrder(TreeNode *root);
 /// @note https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 std::vector<std::vector<int>> zigzagLevelOrder(TreeNode *root);
 
+/// @brief Given the root of a binary tree, return the inorder traversal of its nodes' values.
+/// @param root a binary tree
+/// @return the inorder traversal of its nodes' values
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [0, 100].
+///
+/// - -100 <= Node.val <= 100
+///
+/// @note https://leetcode.com/problems/binary-tree-inorder-traversal/
+std::vector<int> inorderTraversal(TreeNode *root);
+
+/// @brief Given the root of a Binary Search Tree (BST), return the minimum absolute difference between the values of
+/// any two nodes.
+/// @param root a binary search tree
+/// @return the minimum absolute difference between the values of any two nodes
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [2, 10^4].
+///
+/// - 0 <= Node.val <= 10^5
+///
+/// @note https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+int getMinimumDifference(TreeNode *root);
+
+/// @brief Given the root of a binary search tree, and an integer k, return the k-th smallest value (1-indexed) of all
+/// the values of the nodes in the tree.
+/// @param root a binary search tree
+/// @param k an integer
+/// @return the k-th smallest value (1-indexed) of all the values of the nodes in the tree
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [1, 10^4].
+///
+/// - 1 <= k <= 10^4
+///
+/// @note https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+int kthSmallest(TreeNode *root, int k);
+
+/// @brief Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+/// @param root a binary tree
+/// @return true if the binary tree is a valid binary search tree, false otherwise
+///
+/// constraints:
+///
+/// - The number of nodes in the tree is in the range [1, 10^4].
+///
+/// - -2^31 <= Node.val <= 2^31 - 1
+///
+/// @note https://leetcode.com/problems/validate-binary-search-tree/
+bool isValidBST(TreeNode *root);
+
 }  // namespace binarytree
 #endif  // __BINARYTREE_H__

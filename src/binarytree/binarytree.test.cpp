@@ -345,3 +345,70 @@ TEST(binarytreeTest, zigzagLevelOrder) {
     deleteTree(root);
   }
 }
+
+TEST(binarytreeTest, inorderTraversal) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    std::vector<int> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{1, std::nullopt, 2, 3}, {1, 3, 2}}, {{}, {}}, {{1}, {1}}, {{1, 2, 3}, {2, 1, 3}},
+      {{1, std::nullopt, 2}, {1, 2}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::inorderTraversal(root), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, getMinimumDifference) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    int expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{4, 2, 6, 1, 3}, 1},
+      {{1, 0, 48, std::nullopt, std::nullopt, 12, 49}, 1},
+      {{236, 104, 701, std::nullopt, 227, std::nullopt, 911}, 9},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::getMinimumDifference(root), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, kthSmallest) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    int k;
+    int expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{3, 1, 4, std::nullopt, 2}, 1, 1},
+      {{5, 3, 6, 2, 4, std::nullopt, std::nullopt, 1}, 3, 3},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::kthSmallest(root, test_case.k), test_case.expected);
+    deleteTree(root);
+  }
+}
+
+TEST(binarytreeTest, isValidBST) {
+  struct TestCase {
+    std::vector<std::optional<int>> nodes;
+    bool expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{2, 1, 3}, true},
+      {{5, 1, 4, std::nullopt, std::nullopt, 3, 6}, false},
+      {{5, 4, 6, std::nullopt, std::nullopt, 3, 7}, false},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = arrayToTree(test_case.nodes);
+    EXPECT_EQ(binarytree::isValidBST(root), test_case.expected);
+    deleteTree(root);
+  }
+}
