@@ -25,7 +25,6 @@ option(HAS_MSAN "Build and use Memory Sanitizer" ${PROJECT_IS_IN_ROOT})
 set(SRC_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/src/include)
 include_directories(${SRC_INCLUDE_DIR})
 
-set(CMAKE_BUILD_TYPE Debug)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
 if(HAS_BENCHES) 

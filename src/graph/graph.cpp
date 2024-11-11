@@ -207,4 +207,104 @@ std::vector<int> findOrder(int numCourses, std::vector<std::vector<int>> &prereq
   return n == numCourses ? result : std::vector<int>();
 }
 
+int snakesAndLadders(std::vector<std::vector<int>> &board) {
+  int n = static_cast<int>(board.size());
+  int target = n * n;
+  auto getCoordinates = [n](int position) -> std::pair<int, int> {
+    position -= 1;
+    int row = n - 1 - position / n;
+    int col = (n - 1 - row) % 2 == 1 ? n - 1 - (position % n) : position % n;
+    return {row, col};
+  };
+
+  std::queue<int> queue;
+  queue.push(1);
+  std::vector<int> distance(target + 1, -1);
+  distance[1] = 0;
+  while (!queue.empty()) {
+    auto current = queue.front();
+    queue.pop();
+    for (int next = current + 1; next <= std::min(current + 6, target); ++next) {
+      auto [row, col] = getCoordinates(next);
+      int destination = board[row][col] == -1 ? next : board[row][col];
+      if (distance[destination] == -1) {
+        distance[destination] = distance[current] + 1;
+        queue.push(destination);
+      }
+    }
+  }
+
+  return distance[target];
+}
+
+int minMutation(std::string startGene, std::string endGene, std::vector<std::string> &bank) {
+  if (std::find(bank.begin(), bank.end(), endGene) == bank.end()) {
+    return -1;
+  }
+  if (startGene == endGene) {
+    return 0;
+  }
+
+  std::unordered_set<std::string> bankSet(bank.begin(), bank.end());
+  std::queue<std::pair<std::string, int>> queue;
+  queue.push({startGene, 0});
+  std::unordered_set<std::string> visited = {startGene};
+  while (!queue.empty()) {
+    auto [current, steps] = queue.front();
+    queue.pop();
+    for (size_t i = 0; i < current.size(); ++i) {
+      for (char c : {'A', 'C', 'G', 'T'}) {
+        if (current[i] == c) {
+          continue;
+        }
+        std::string next = current;
+        next[i] = c;
+        if (bankSet.count(next) == 0) {
+          continue;
+        }
+        if (visited.count(next) == 0) {
+          queue.push({next, steps + 1});
+          visited.insert(next);
+        }
+        if (next == endGene) {
+          return steps + 1;
+        }
+      }
+    }
+  }
+  return -1;
+}
+
+int ladderLength(std::string beginWord, std::string endWord, std::vector<std::string> &wordList) {
+  std::unordered_set<std::string> wordSet(wordList.begin(), wordList.end());
+  if (wordSet.count(endWord) == 0) {
+    return 0;
+  }
+  std::queue<std::pair<std::string, int>> queue;
+  queue.push({beginWord, 1});
+  std::unordered_set<std::string> visited = {beginWord};
+  while (!queue.empty()) {
+    auto [current, steps] = queue.front();
+    queue.pop();
+    for (size_t i = 0; i < current.size(); ++i) {
+      for (char c = 'a'; c <= 'z'; ++c) {
+        if (current[i] == c) {
+          continue;
+        }
+        std::string next = current;
+        next[i] = c;
+        if (wordSet.count(next) == 0 || visited.count(next) > 0) {
+          continue;
+        }
+        queue.push({next, steps + 1});
+        visited.insert(next);
+        if (next == endWord) {
+          return steps + 1;
+        }
+      }
+    }
+  }
+  return 0;
+}
+
 }  // namespace graph
