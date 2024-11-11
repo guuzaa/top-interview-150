@@ -133,3 +133,55 @@ TEST(graphTest, findOrder) {
     EXPECT_EQ(graph::findOrder(test.numCourses, test.prerequisites), test.expected);
   }
 }
+
+TEST(graphTest, snakesAndLadders) {
+  struct TestCase {
+    std::vector<std::vector<int>> board;
+    int expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{{-1, -1}, {-1, 3}}, 1},
+      {{{-1, 4}, {-1, 3}}, 1},
+      {{{-1, -1, -1, -1, -1, -1},
+        {-1, -1, -1, -1, -1, -1},
+        {-1, -1, -1, -1, -1, -1},
+        {-1, 35, -1, -1, 13, -1},
+        {-1, -1, -1, -1, -1, -1},
+        {-1, 15, -1, -1, -1, -1}},
+       4},
+  };
+  for (auto &test : test_cases) {
+    EXPECT_EQ(graph::snakesAndLadders(test.board), test.expected);
+  }
+}
+
+TEST(graphTest, minMutation) {
+  struct TestCase {
+    std::string startGene;
+    std::string endGene;
+    std::vector<std::string> bank;
+    int expected;
+  };
+  std::vector<TestCase> test_cases = {{"AACCGGTT", "AACCGGTA", {"AACCGGTA"}, 1},
+                                      {"AACCGGTT", "AAACGGTA", {"AACCGGTA", "AACCGCTA", "AAACGGTA"}, 2},
+                                      {"AACCGGTT", "AAACGGTA", {"AACCGATT", "AACCGATA", "AAACGATA", "AAACGGTA"}, 4}};
+  for (auto &test : test_cases) {
+    EXPECT_EQ(graph::minMutation(test.startGene, test.endGene, test.bank), test.expected);
+  }
+}
+
+TEST(graphTest, ladderLength) {
+  struct TestCase {
+    std::string beginWord;
+    std::string endWord;
+    std::vector<std::string> wordList;
+    int expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {"hit", "cog", {"hot", "dot", "dog", "lot", "log", "cog"}, 5},
+      {"hit", "cog", {"hot", "dot", "dog", "lot", "log"}, 0},
+  };
+  for (auto &test : test_cases) {
+    EXPECT_EQ(graph::ladderLength(test.beginWord, test.endWord, test.wordList), test.expected);
+  }
+}

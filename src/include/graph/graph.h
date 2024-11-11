@@ -129,6 +129,65 @@ bool canFinish(int numCourses, std::vector<std::vector<int>> &prerequisites);
 /// @note https://leetcode.com/problems/course-schedule-ii/
 std::vector<int> findOrder(int numCourses, std::vector<std::vector<int>> &prerequisites);
 
+/// @brief You are given an n x n integer matrix board where the cells are labeled from 1 to n^2 in a Boustrophedon
+/// style starting from the bottom left of the board (i.e. board[n - 1][0]) and alternating direction each row.
+/// Note that you only take a snake or ladder at most once per dice roll. If the destination to a snake or ladder is
+/// the start of another snake or ladder, you do not continue following the followed snake or ladder.
+/// @param board an n x n integer matrix
+/// @return the minimum number of moves required to reach the last cell, board[0][0], or -1 if it's not possible
+/// constraints:
+///
+/// - n == board.length
+///
+/// - n == board[i].length
+///
+/// - 2 <= n <= 20
+///
+/// - board[i][j] is either -1 or in the range 1 to n^2.
+///
+/// @note https://leetcode.com/problems/snakes-and-ladders/
+int snakesAndLadders(std::vector<std::vector<int>> &board);
+
+/// @brief A gene string can be represented by an 8-character long string, with choices from 'A', 'C', 'G', and 'T'.
+/// There is a bank of all the valid gene mutations.
+/// @param start start gene string
+/// @param end end gene string
+/// @param bank a list of valid gene strings
+/// @return the minimum number of mutations needed to transform the start gene string to the end gene string
+/// constraints:
+///
+/// - startGene.length == endGene.length == bank[i].length == 8
+///
+/// - startGene and endGene consist of only the characters 'A', 'C', 'G', and 'T'.
+///
+/// @note https://leetcode.com/problems/minimum-genetic-mutation/
+int minMutation(std::string startGene, std::string endGene, std::vector<std::string> &bank);
+
+/// @brief A transformation sequence from beginWord to endWord using a dictionary wordList is a sequence of words
+/// beginWord -> s1 -> s2 -> ... -> sk such that:
+/// @param beginWord starting word
+/// @param endWord ending word
+/// @param wordList a list of words
+/// @return the length of the shortest transformation sequence, or 0 if no such sequence exists
+/// constraints:
+///
+/// - 1 <= beginWord.length <= 10
+///
+/// - endWord.length == beginWord.length
+///
+/// - 1 <= wordList.length <= 5000
+///
+/// - wordList[i].length == beginWord.length
+///
+/// - beginWord, endWord, and wordList[i] consist of lowercase English letters.
+///
+/// - beginWord != endWord
+///
+/// - All the words in wordList are unique.
+///
+/// @note https://leetcode.com/problems/word-ladder/
+int ladderLength(std::string beginWord, std::string endWord, std::vector<std::string> &wordList);
+
 }  // namespace graph
 
 #endif  // __GRAPH_H__
