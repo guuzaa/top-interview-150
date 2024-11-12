@@ -8,7 +8,6 @@ set(supported_suffixes "cc" "cpp" "cxx" "c")
 
 # Objects definition
 set(ALL_OBJECTS "")
-set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter -Wno-attributes") 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")

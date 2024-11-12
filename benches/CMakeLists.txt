@@ -1,4 +1,4 @@
-set(bench_dir_list "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+set(bench_dir_list "${CMAKE_CURRENT_SOURCE_DIR}/trie")
 
 enable_testing()
 
@@ -8,7 +8,7 @@ foreach(bench_dir ${bench_dir_list})
 
     set(bench_name ${dir_name}_bench)
     add_executable(${bench_name} EXCLUDE_FROM_ALL ${bench_files})
-    target_link_libraries(${bench_name} PRIVATE lib_obj benchmark::benchmark)
+    target_link_libraries(${bench_name} PRIVATE ${ALL_OBJECTS} benchmark::benchmark)
 
     add_custom_target(
         bench-${dir_name}
