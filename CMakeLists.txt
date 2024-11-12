@@ -27,13 +27,13 @@ include_directories(${SRC_INCLUDE_DIR})
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
-if(HAS_BENCHES) 
+if(HAS_BENCHES AND CMAKE_BUILD_TYPE STREQUAL "Release") 
     include(3rdParty)
     include_googletest()
     include_benchmark()
     message(STATUS "Building benches")
     add_subdirectory(benches)
-endif(HAS_BENCHES) 
+endif(HAS_BENCHES AND CMAKE_BUILD_TYPE STREQUAL "Release") 
 
 if(HAS_MSAN)
     include(Sanitizers)
