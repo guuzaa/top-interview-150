@@ -11,6 +11,7 @@ add_subdirectory(binarytree)
 add_subdirectory(graph)
 add_subdirectory(trie)
 add_subdirectory(binarysearch)
+add_subdirectory(backtracking)
 
 # TODO support dynamic library
 add_library(${PROJECT_NAME} STATIC ${ALL_OBJECT_FILES})
@@ -36,6 +37,7 @@ add_custom_target(
     COMMAND $<TARGET_FILE:graph_unit_test>
     COMMAND $<TARGET_FILE:trie_unit_test>
     COMMAND $<TARGET_FILE:binarysearch_unit_test>
+    COMMAND $<TARGET_FILE:backtracking_unit_test>
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${ALL_TESTS}
 )
