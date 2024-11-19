@@ -58,6 +58,17 @@ int maxPathSumHelper(TreeNode *root, int &maxSum) {
   return root->val + std::max(leftGain, rightGain);
 }
 
+TreeNode *sortedArrayToBSTHelper(std::vector<int> &nums, int left, int right) {
+  if (left > right) {
+    return nullptr;
+  }
+  int mid = left + (right - left) / 2;
+  auto root = new TreeNode(nums[mid]);
+  root->left = sortedArrayToBSTHelper(nums, left, mid - 1);
+  root->right = sortedArrayToBSTHelper(nums, mid + 1, right);
+  return root;
+}
+
 }  // namespace
 
 int maxDepth(TreeNode *root) {
@@ -420,6 +431,10 @@ bool isValidBST(TreeNode *root) {
     current = current->right;
   }
   return true;
+}
+
+TreeNode *sortedArrayToBST(std::vector<int> &nums) {
+  return sortedArrayToBSTHelper(nums, 0, static_cast<int>(nums.size()) - 1);
 }
 
 }  // namespace binarytree

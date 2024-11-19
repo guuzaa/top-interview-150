@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 namespace linkedlist {
 struct ListNode {
@@ -237,6 +238,38 @@ class LRUCache {
   int get(int key);
   void put(int key, int value);
 };
+
+/// @brief sort a linked list in O(n log n) time using constant space complexity
+/// @param head the head of the linked list
+/// @return the sorted linked list
+///
+/// constraints:
+///
+/// - 0 <= sz <= 5 * 10^4
+///
+/// - -10^5 <= Node.val <= 10^5
+///
+/// @note https://leetcode.com/problems/sort-list/
+ListNode *sortList(ListNode *head);
+
+/// @brief merge k sorted linked lists
+/// @param lists the linked lists to merge
+/// @return the merged linked list
+///
+/// constraints:
+///
+/// - k == lists.length
+///
+/// - 0 <= k <= 10^4
+///
+/// - 0 <= lists[i].length <= 500
+///
+/// - -10^4 <= lists[i][j] <= 10^4
+///
+/// - lists[i] is sorted in ascending order
+///
+/// @note https://leetcode.com/problems/merge-k-sorted-lists/
+ListNode *mergeKLists(std::vector<ListNode *> &lists);
 
 }  // namespace linkedlist
 

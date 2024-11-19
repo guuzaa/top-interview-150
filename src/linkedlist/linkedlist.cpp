@@ -4,6 +4,36 @@
 
 namespace linkedlist {
 
+namespace {
+
+ListNode *getMiddleNode(ListNode *head) {
+  ListNode *prev = nullptr;
+  auto slow = head;
+  auto fast = head;
+  while (fast != nullptr && fast->next != nullptr) {
+    prev = slow;
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  if (prev != nullptr) {
+    prev->next = nullptr;
+  }
+  return slow;
+}
+
+ListNode *mergeKListsHelper(std::vector<ListNode *> &lists, int left, int right) {
+  if (left == right) {
+    return lists[left];
+  }
+
+  int mid = left + (right - left) / 2;
+  auto leftList = mergeKListsHelper(lists, left, mid);
+  auto rightList = mergeKListsHelper(lists, mid + 1, right);
+  return mergeTwoLists(leftList, rightList);
+}
+
+}  // namespace
+
 bool hasCycle(ListNode *head) {
   if (head == nullptr) {
     return false;
@@ -328,6 +358,25 @@ void LRUCache::put(int key, int value) {
   if (static_cast<int>(cache_.size()) > capacity_) {
     removeLRU();
   }
+}
+
+ListNode *sortList(ListNode *head) {
+  if (head == nullptr || head->next == nullptr) {
+    return head;
+  }
+
+  auto mid = getMiddleNode(head);
+  auto left = sortList(head);
+  auto right = sortList(mid);
+  return mergeTwoLists(left, right);
+}
+
+ListNode *mergeKLists(std::vector<ListNode *> &lists) {
+  if (lists.empty()) {
+    return nullptr;
+  }
+
+  return mergeKListsHelper(lists, 0, lists.size() - 1);
 }
 
 }  // namespace linkedlist

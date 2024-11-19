@@ -275,3 +275,42 @@ TEST(linkedlistTest, LRUCache) {
   EXPECT_EQ(cache.get(3), 3);
   EXPECT_EQ(cache.get(4), 4);
 }
+
+TEST(linkedlistTest, sortList) {
+  struct TestCase {
+    std::vector<int> nums;
+    std::vector<int> want;
+  };
+  std::vector<TestCase> tests = {
+      {{4, 2, 1, 3}, {1, 2, 3, 4}},
+      {{-1, 5, 3, 4, 0}, {-1, 0, 3, 4, 5}},
+      {{}, {}},
+  };
+  for (auto &&test : tests) {
+    auto head = vector2LinkedList(test.nums);
+    auto want = vector2LinkedList(test.want);
+    auto result = linkedlist::sortList(head);
+    EXPECT_TRUE(linkedListEqual(result, want));
+    freeLinkedLists(want, result);
+  }
+}
+
+TEST(linkedlistTest, mergeKLists) {
+  struct TestCase {
+    std::vector<std::vector<int>> lists;
+    std::vector<int> want;
+  };
+  std::vector<TestCase> tests = {
+      {{{1, 4, 5}, {1, 3, 4}, {2, 6}}, {1, 1, 2, 3, 4, 4, 5, 6}},
+  };
+  for (auto &&test : tests) {
+    std::vector<linkedlist::ListNode *> lists;
+    for (auto &&list : test.lists) {
+      lists.push_back(vector2LinkedList(list));
+    }
+    auto want = vector2LinkedList(test.want);
+    auto result = linkedlist::mergeKLists(lists);
+    EXPECT_TRUE(linkedListEqual(result, want));
+    freeLinkedLists(want, result);
+  }
+}
