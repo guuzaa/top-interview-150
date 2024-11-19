@@ -356,5 +356,21 @@ int kthSmallest(TreeNode *root, int k);
 /// @note https://leetcode.com/problems/validate-binary-search-tree/
 bool isValidBST(TreeNode *root);
 
+/// @brief Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced
+/// binary search tree.
+/// @param nums an integer array
+/// @return the root of the height-balanced binary search tree
+///
+/// constraints:
+///
+/// - 1 <= nums.length <= 10^4
+///
+/// - -10^4 <= nums[i] <= 10^4
+///
+/// - nums is sorted in a strictly increasing order.
+///
+/// @note https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+TreeNode *sortedArrayToBST(std::vector<int> &nums);
+
 }  // namespace binarytree
 #endif  // __BINARYTREE_H__

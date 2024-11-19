@@ -412,3 +412,21 @@ TEST(binarytreeTest, isValidBST) {
     deleteTree(root);
   }
 }
+
+TEST(binarytreeTest, sortedArrayToBST) {
+  struct TestCase {
+    std::vector<int> nums;
+    std::vector<std::optional<int>> expected;
+  };
+  std::vector<TestCase> test_cases = {
+      {{-10, -3, 0, 5, 9}, {0, -10, 5, std::nullopt, -3, std::nullopt, 9}},
+      {{1, 3}, {1, std::nullopt, 3}},
+  };
+  for (auto &&test_case : test_cases) {
+    binarytree::TreeNode *root = binarytree::sortedArrayToBST(test_case.nums);
+    binarytree::TreeNode *expected = arrayToTree(test_case.expected);
+    EXPECT_TRUE(binarytree::isSameTree(root, expected));
+    deleteTree(root);
+    deleteTree(expected);
+  }
+}
