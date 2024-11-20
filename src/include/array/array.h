@@ -220,6 +220,34 @@ int candy(std::vector<int> &ratings);
 /// - 0 <= height[i] <= 10^5
 /// @note https://leetcode.com/problems/trapping-rain-water/
 int trap(std::vector<int> &height);
+
+/// @brief Given an integer array nums, find the contiguous subarray (containing at least one number) which has the
+/// largest sum and return its sum.
+/// @param nums The integer array.
+/// @return The sum of the largest subarray.
+///
+/// constraints
+/// - 1 <= nums.length <= 10^5
+///
+/// - -10^4 <= nums[i] <= 10^4
+///
+/// @note https://leetcode.com/problems/maximum-subarray/
+int maxSubArray(std::vector<int> &nums);
+
+/// @brief Given a circular integer array nums of length n, return the maximum possible sum of a non-empty subarray of
+/// nums.
+/// @param nums The integer array.
+/// @return The maximum possible sum of a non-empty subarray of nums.
+///
+/// constraints
+/// - n == nums.length
+///
+/// - 1 <= n <= 3 * 10^4
+///
+/// - -3 * 10^4 <= nums[i] <= 3 * 10^4
+///
+/// @note https://leetcode.com/problems/maximum-sum-circular-subarray/
+int maxSubarraySumCircular(std::vector<int> &nums);
 }  // namespace array
 
 #endif  //__ARRAY_H__

@@ -269,4 +269,33 @@ int trap(std::vector<int> &height) {
   return water;
 }
 
+int maxSubArray(std::vector<int> &nums) {
+  int maxSoFar = nums[0];
+  int maxSum = nums[0];
+  for (int i = 1; i < static_cast<int>(nums.size()); ++i) {
+    maxSoFar = std::max(maxSoFar + nums[i], nums[i]);
+    maxSum = std::max(maxSum, maxSoFar);
+  }
+  return maxSum;
+}
+
+int maxSubarraySumCircular(std::vector<int> &nums) {
+  int maxSoFar = nums[0];
+  int minSoFar = nums[0];
+  int maxSum = nums[0];
+  int minSum = nums[0];
+  for (int i = 1; i < static_cast<int>(nums.size()); ++i) {
+    maxSoFar = std::max(maxSoFar + nums[i], nums[i]);
+    minSoFar = std::min(minSoFar + nums[i], nums[i]);
+    maxSum = std::max(maxSum, maxSoFar);
+    minSum = std::min(minSum, minSoFar);
+  }
+
+  int total = std::accumulate(nums.begin(), nums.end(), 0);
+  if (total != minSum) {
+    return std::max(maxSum, total - minSum);
+  }
+  return maxSum;
+}
+
 }  // namespace array
