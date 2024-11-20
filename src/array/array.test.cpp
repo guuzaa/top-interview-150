@@ -363,3 +363,33 @@ TEST(ArrayTest, TrapTest) {
     EXPECT_EQ(result, c.expected_water);
   }
 }
+
+TEST(ArrayTest, MaxSubArrayTest) {
+  struct Case {
+    std::vector<int> nums;
+    int want;
+  };
+  std::vector<Case> cases = {
+      {{1}, 1},
+      {{1, 2, 3, 4, 5}, 15},
+      {{-1, -2, -3, -4, -5}, -1},
+      {{5, 4, -1, 7, 8}, 23},
+  };
+  for (auto &c : cases) {
+    int result = maxSubArray(c.nums);
+    EXPECT_EQ(result, c.want);
+  }
+}
+
+TEST(ArrayTest, MaxSubarraySumCircularTest) {
+  struct Case {
+    std::vector<int> nums;
+    int want;
+  };
+  std::vector<Case> cases = {
+      {{1, -2, 3, 4, -10, 5}, 11}, {{5, -3, 5}, 10}, {{-1, -2, -3, -4, -5}, -1}, {{3, -1, 2, -1}, 4}};
+  for (auto &c : cases) {
+    int result = maxSubarraySumCircular(c.nums);
+    EXPECT_EQ(result, c.want);
+  }
+}

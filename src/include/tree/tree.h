@@ -41,7 +41,7 @@ class Node {
 ///
 /// - n == 2^x 0 <= x <= 6
 ///
-/// @note https://leetcode.cn/problems/construct-quad-tree/
+/// @note https://leetcode.com/problems/construct-quad-tree/
 Node *construct(std::vector<std::vector<int>> &grid);
 
 }  // namespace quadtree
