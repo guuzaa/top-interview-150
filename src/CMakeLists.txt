@@ -16,6 +16,7 @@ add_subdirectory(tree)
 add_subdirectory(bit)
 add_subdirectory(heap)
 add_subdirectory(dp)
+add_subdirectory(math)
 
 # TODO support dynamic library
 add_library(${PROJECT_NAME} STATIC ${ALL_OBJECT_FILES})
@@ -46,6 +47,7 @@ add_custom_target(
     COMMAND $<TARGET_FILE:bit_unit_test>
     COMMAND $<TARGET_FILE:heap_unit_test>
     COMMAND $<TARGET_FILE:dp_unit_test>
+    COMMAND $<TARGET_FILE:math_unit_test>
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     DEPENDS ${ALL_TESTS}
 )
